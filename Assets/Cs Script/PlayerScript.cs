@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public int BaseSpeed = 10;
-    public int PlaneSpeed;
     public float RotSpeed = 100f;
+    //Change this to private if you don't want to see it in the inspector
+    public int PlaneSpeed;
 
-    // حدود الكاميرا (X, Y)
+    // Just add colliders to the borders (AKA Invisible Walls)
     public float MinX = -10f;
     public float MaxX = 10f;
     public float MinY = -5f;

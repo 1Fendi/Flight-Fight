@@ -9,6 +9,10 @@ public class BulletShot : MonoBehaviour
     private float Timer;
     public float restartTime;
 
+    // Use the New Input System Instead
+    //skip the importing of the new input system
+    //https://youtu.be/HmXU4dZbaMw?si=whUaEMwHClAcah1A&t=147
+
     void Update()
     {
 
