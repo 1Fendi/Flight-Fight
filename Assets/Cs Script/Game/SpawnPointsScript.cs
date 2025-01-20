@@ -1,37 +1,32 @@
 using UnityEngine;
-using System.Collections;
 public class SpawnPointsScript : MonoBehaviour
 {
     public Transform[] Points; // Array of spawn points
     public GameObject Enemy; // Reference to the enemy prefab
     public LogicManger Logic; // Reference to the LogicManger script
-    public float spawnTime = 3f; // Delay between enemy spawns
-    public float spawnRate = 3f; // Rate of enemy spawns
-    public float lowestTime = 1f; // Lowest delay between enemy spawns
-    public float highestTime = 5f; // Highest delay between enemy spawns    
+    public float SpawnRate; // Rate at which enemies spawn
+    public float SpawnDelay; // Delay before the first spawn
+    public bool isSpawning = false; // Flag to check if an enemy is currently spawning
+
     void Update()
     {
-        if (spawnTime < spawnRate)
+        if (!isSpawning)
         {
-            spawnTime += Time.deltaTime;
-            
+            isSpawning = true;
+            Logic.StartTimeDelay(SpawnDelay, SpawnRate, StartSpawning);
         }
-        else 
-        {
-            SpawnEnemy(); 
-            spawnTime = Random.Range(lowestTime, highestTime);
-        }
+    }
+
+    public void StartSpawning()
+    {   
+        SpawnEnemy();
+        isSpawning = false;
     }
 
     public void SpawnEnemy()
     {
-        // Randomly select a spawn point
-        int randomPoint = Random.Range(0, Points.Length);
-        // Delay before spawning an enemy
-        Logic.TimeDelay(8);
-        // Spawn an enemy at the selected spawn point
-        Instantiate(Enemy, Points[randomPoint].position, Quaternion.identity);
-        // Delay before spawning the next enemy
-        
+        int randomIndex = Random.Range(0, Points.Length); // Get a random index
+        Transform spawnPoint = Points[randomIndex];
+        Instantiate(Enemy, spawnPoint.position, Quaternion.identity); // Spawn the enemy
     }
 }

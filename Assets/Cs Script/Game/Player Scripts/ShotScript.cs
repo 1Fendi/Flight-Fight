@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ShotScript : MonoBehaviour
 {
+    public PlayerScript Player; // Reference to the PlayerScript
     public GameObject Bullet; // Reference to the bullet prefab
     public Transform ShotPS; // Reference to the shot position transform
     private float Timer; // Timer for shooting cooldown
@@ -10,7 +11,7 @@ public class ShotScript : MonoBehaviour
     void Update()
     {
         // Check if the player can shoot
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && Timer <= 0)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && Timer <= 0 && Player.CanPlay)
         {
             // Instantiate a bullet at the shot position
             Instantiate(Bullet, ShotPS.position, transform.rotation);

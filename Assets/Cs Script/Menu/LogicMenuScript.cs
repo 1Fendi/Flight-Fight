@@ -14,7 +14,7 @@ public class LogicMenuScript : MonoBehaviour
         Title.SetActive(false);
         Play.SetActive(false);
         // Destroy the menu logic object
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         // Load the game scene
         SceneManager.LoadScene(1);
     }

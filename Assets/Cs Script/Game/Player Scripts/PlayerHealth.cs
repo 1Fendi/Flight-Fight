@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,8 +12,6 @@ public class PlayerHealth : MonoBehaviour
     {
         // Initialize current health to max health
         currentHealth = MaxHealth;
-        // Trigger death sequence after a delay (for testing)
-        Dead(2.5f);
     }
 
     // Function to handle taking damage
@@ -23,34 +23,31 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // Trigger death sequence
-            Dead(1000);
+            Dead(2.5f);
         }
     }
 
     // Function to handle player death
     public void Dead(float sec)
     {
-        // Delay before showing game over text
-        Logic.TimeDelay(sec);
-        Logic.gameOverText.enabled = true;
-
-        // Delay before enabling the Play Again button
-        Logic.TimeDelay(sec - 1);
-        Logic.PlayAgain.enabled = true;
-
-        // Delay before enabling the Main Menu button
-        Logic.TimeDelay(sec - 1);
-        Logic.MainMenu.enabled = true;
-
+        StartCoroutine(DeadTitles(sec));
         // Restart the game if 'W' is pressed
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Logic.restart();
         }
         // Go to the main menu if 'S' is pressed
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Logic.ToMainMenu();
         }
+    }
+
+    public IEnumerator DeadTitles(float sec)
+    {
+        yield return Logic.StartCoroutine(Logic.SecDelay(sec, Logic.GameOver));
+        yield return Logic.StartCoroutine(Logic.SecDelay(sec - 1.5f, Logic.PlayAgainButton));
+        yield return Logic.StartCoroutine(Logic.SecDelay(sec - 1.5f, Logic.MainMenuButton));
+        
     }
 }

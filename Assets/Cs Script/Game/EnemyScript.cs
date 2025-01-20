@@ -3,14 +3,12 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     private Transform player; // Reference to the player's transform
-    private LogicManger Logic; // Reference to the LogicManger script
     public float EnemySpeed; // Speed of the enemy
 
     void Start()
     {
         // Find the player and LogicManger objects
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManger>();
     }
 
     void Update()

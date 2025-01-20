@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 155141901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.31, y: 5.59, z: 0}
+  m_LocalPosition: {x: -8.36, y: 6.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -254,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 163441557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: 0.84, z: 0}
+  m_LocalPosition: {x: -11.56, y: 0.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 175888093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.2, y: -6.61, z: 0}
+  m_LocalPosition: {x: -9.87, y: -6.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -316,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 178652246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.7, y: -0.9, z: 0}
+  m_LocalPosition: {x: 11.24, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -380,9 +380,9 @@ GameObject:
   - component: {fileID: 512288612}
   - component: {fileID: 512288611}
   - component: {fileID: 512288613}
+  - component: {fileID: 512288618}
   - component: {fileID: 512288617}
   - component: {fileID: 512288616}
-  - component: {fileID: 512288615}
   - component: {fileID: 512288614}
   m_Layer: 0
   m_Name: Player
@@ -508,32 +508,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 512288609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f470a8d7d818d349b1738a851869fe0, type: 3}
+  m_Script: {fileID: 11500000, guid: ad8d9c6df5159c54d880feabaca1218b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 512288615}
-  PlaneSpeed: 5
-  BaseSpeed: 5
-  RotSpeed: 180
---- !u!114 &512288615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512288609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0a3febadd654a4aa2b0a07ff775773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: {fileID: 512288614}
-  health: {fileID: 512288616}
-  Area: {fileID: 512288617}
-  Logic: {fileID: 910775919}
-  Enemy: {fileID: 7488483812430478579, guid: 266c7d73038683c4fa7b5691c92dfe3f, type: 3}
-  PlayerScore: 0
-  startGame: 0
+  MaxX: 10
+  MaxY: 5
 --- !u!114 &512288616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,8 +526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 910775919}
-  MaxHealth: 100
-  currentHealth: 100
+  MaxHealth: 3
+  currentHealth: 3
 --- !u!114 &512288617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,13 +537,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 512288609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8d9c6df5159c54d880feabaca1218b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f470a8d7d818d349b1738a851869fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinX: -9
-  MaxX: 9
-  MinY: -4
-  MaxY: 4
+  Player: {fileID: 512288618}
+  PlaneSpeed: 5
+  RotSpeed: 200
+--- !u!114 &512288618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512288609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0a3febadd654a4aa2b0a07ff775773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: {fileID: 512288617}
+  health: {fileID: 512288616}
+  Area: {fileID: 512288614}
+  Logic: {fileID: 910775919}
+  Enemy: {fileID: 7598719135498314879, guid: 266c7d73038683c4fa7b5691c92dfe3f, type: 3}
+  PlayerScore: 0
+  CanPlay: 1
+  startGame: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +725,7 @@ Transform:
   m_GameObject: {fileID: 540079746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3, y: 5.8, z: 0}
+  m_LocalPosition: {x: 2.3, y: 6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1012,7 +1010,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 910775919}
         m_TargetAssemblyTypeName: LogicManger, Assembly-CSharp
-        m_MethodName: ToTitle
+        m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1211,7 +1209,7 @@ Transform:
   m_GameObject: {fileID: 1024261075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.5, y: -7.3, z: 0}
+  m_LocalPosition: {x: 11.17, y: -5.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1242,7 +1240,7 @@ Transform:
   m_GameObject: {fileID: 1036902723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.1, y: 5.7, z: 0}
+  m_LocalPosition: {x: 8.1, y: 6.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1273,7 +1271,7 @@ Transform:
   m_GameObject: {fileID: 1084262289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.4, y: -3.5, z: 0}
+  m_LocalPosition: {x: -10.89, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1350,6 +1348,8 @@ MonoBehaviour:
   - {fileID: 1084262290}
   Enemy: {fileID: 7926128664602026543, guid: 266c7d73038683c4fa7b5691c92dfe3f, type: 3}
   Logic: {fileID: 910775919}
+  SpawnRate: 7.05
+  SpawnDelay: 0
 --- !u!1 &1256040872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1454,7 @@ Transform:
   m_GameObject: {fileID: 1611756640}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2, y: 5.8, z: 0}
+  m_LocalPosition: {x: -2.2, y: 6.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1485,7 +1485,7 @@ Transform:
   m_GameObject: {fileID: 1615876544}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.1, y: 5.1, z: 0}
+  m_LocalPosition: {x: 11.26, y: 5.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1576,7 +1576,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 910775919}
         m_TargetAssemblyTypeName: LogicManger, Assembly-CSharp
-        m_MethodName: restart
+        m_MethodName: ToPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

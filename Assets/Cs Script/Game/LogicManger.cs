@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using UnityEngine.UI;
-using System.Threading.Tasks;
-
+using System;
+using System.Collections;
 public class LogicManger : MonoBehaviour
 {
     public Text gameOverText; // Reference to the game over text UI element
@@ -19,27 +18,56 @@ public class LogicManger : MonoBehaviour
     // Function to go to the main menu
     public void ToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu");
     }
 
     // Function to start the game
     public void ToPlay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
     }
 
     
-    public void TimeDelay(float delayTime)
+    public void PlayAgainButton()
     {
-       StartCoroutine(DelayAction(delayTime));
+        PlayAgain.gameObject.SetActive(true);
     }
-
-    IEnumerator DelayAction(float delayTime)
+    
+    public void MainMenuButton()
     {
-       //Wait for the specified delay time before continuing.
-       yield return new WaitForSeconds(delayTime);
-
-       //Do the action after the delay time has finished.
+        MainMenu.gameObject.SetActive(true);
+    }
+    
+    public void StartTimeDelay(float delayTime, float rateTime, Action func)
+    {
+        StartCoroutine(TimeDelay(delayTime, rateTime, func));
+    }
+    
+    public IEnumerator TimeDelay(float delayTime, float rateTime, Action func)
+    {
+        if (rateTime == delayTime)
+        {
+            func?.Invoke();
+            yield break;
+        }
+        
+        while (Mathf.Abs(rateTime - delayTime) > Mathf.Epsilon)
+        {
+            rateTime = Mathf.MoveTowards(rateTime, delayTime, Time.deltaTime);
+            yield return null;
+        }
+        func?.Invoke();
+    }
+    
+    public IEnumerator SecDelay(float delayTime, Action func)
+    {
+        yield return new WaitForSeconds(delayTime);
+        func?.Invoke();
     }
 
     // Function to add a value to an integer reference
