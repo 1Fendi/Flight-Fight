@@ -18,6 +18,7 @@ public class ShotScript : MonoBehaviour
             // Reset the timer
             Timer = restartTime;
         }
+        
         else
         {
             // Decrease the timer

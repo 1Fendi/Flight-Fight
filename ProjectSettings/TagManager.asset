@@ -10,6 +10,7 @@ TagManager:
   - Game Over
   - Play Again
   - Title
+  - score
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - PostProcessing
   - 
   - 
   - 
