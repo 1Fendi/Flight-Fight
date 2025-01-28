@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
         if ((Input.anyKeyDown || startGame) && CanPlay)
         {
             startGame = true;
-            PlayerMove();
+            Speed.PlayerMove(Speed.PlaneSpeed);
             // Update speed and rotation
             Speed.PlayerAcceleration(ref Speed.PlaneSpeed, ref Speed.RotSpeed);
             Speed.PlayerRotate(Speed.RotSpeed);
@@ -32,14 +32,8 @@ public class PlayerScript : MonoBehaviour
         
         // Clamp the player's position within the defined boundaries
         Area.ClampPosition();
+        Debug.Log($"{transform.rotation.z}");
     }
-
-    // Function to move the player
-    public void PlayerMove()
-    {
-        transform.Translate(Vector3.up * Speed.PlaneSpeed * Time.deltaTime);
-    }
-
 
     // Handle collision with enemies
     void OnTriggerEnter2D(Collider2D other)
@@ -52,6 +46,7 @@ public class PlayerScript : MonoBehaviour
             Speed.AccelerationSpeed(ref Speed.PlaneSpeed, -1);
             // Reduce enemy speed
             Speed.AccelerationSpeed(ref Enemy.EnemySpeed, -0.5f);
+            
             // Delay before stopping the game
             // Stop the player from playing
             CanPlay = false;

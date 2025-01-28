@@ -5,7 +5,9 @@ public class EnemyScript : MonoBehaviour
 {
     private PlayerScript playerSc;
     private LogicManger logic;
+    public GameObject EnemyEffect;    
     public float EnemySpeed; // Speed of the enemy
+    public float targetScore = 10;
     private Text score;
 
     [ContextMenu("Inheres Score")]
@@ -26,6 +28,12 @@ public class EnemyScript : MonoBehaviour
             Vector3 direction = (playerSc.transform.position - transform.position).normalized;
             // Move the enemy towards the player
             transform.position += direction * EnemySpeed * Time.deltaTime;
+
+            if (playerSc.PlayerScore > targetScore)
+            {
+                EnemySpeed += 1;
+                targetScore += 10;
+            }
         }
     }
 
@@ -37,8 +45,9 @@ public class EnemyScript : MonoBehaviour
             // Destroy the enemy and the bullet
             Destroy(gameObject);
             Destroy(other.gameObject);
+            Instantiate(EnemyEffect, transform.position, Quaternion.identity);
             logic.IntAdd(ref playerSc.PlayerScore, 1);
-            score.text = $"Score: {playerSc.PlayerScore.ToString()}";
+            score.text = $"{playerSc.PlayerScore.ToString()}";
         }
     }
 }
